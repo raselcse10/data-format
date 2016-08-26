@@ -5,9 +5,7 @@
 */
 class DataConversion {
 	
-	protected $text;
-
-	public function textToBinary($text) {
+	public static function textToBinary($text) {
 
 	    if(!is_string($text)) {
 
@@ -32,7 +30,7 @@ class DataConversion {
 
 	}
 
-	public function binaryToText($text) {
+	public static function binaryToText($text) {
 
 	    if(!is_string($text)) {
 
@@ -53,7 +51,7 @@ class DataConversion {
 
 	}
 
-	public function binaryToDecimal($input) {
+	public static function binaryToDecimal($input) {
 
 		if(!is_string($input)) {
 
@@ -73,7 +71,7 @@ class DataConversion {
 	    }
 	}
 
-	public function asciiToAlphabet($input) {
+	public static function asciiToAlphabet($input) {
 
 		if(!isset($input)) {
 
@@ -85,7 +83,7 @@ class DataConversion {
 	    }
 	}
 
-	public function characterToAscii($input) {
+	public static function characterToAscii($input) {
 
 		if(!is_string($input)) {
 
@@ -105,14 +103,23 @@ class DataConversion {
 	    }
 	}
 
+	/**
+	 *  Convert any string to sentence first character uppercase
+	 *
+	 * @param      <string>  String Sentence
+	 *
+	 * @return     <string>  ( sentence first letter uppercase string )
+	 */
+	public static function stringCaseConversion($input) {
+	    $strings = preg_split('/([.?!]+)/', $input, -1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE);
+	    $output = "";
+
+	    foreach ($strings as $key => $word) {
+	        $output .= ($key & 1) == 0 ?  ucfirst(strtolower(trim($word))) : $word ." ";
+	    }
+	    return trim($output);
+	} 
+
 }
 
-$object = new DataConversion();
-
-//echo $binary = $object->textToBinary("Hi Rasel. How are you?");
-//echo $object->binaryToText($binary);
-//echo $object->binaryToDecimal($binary);
-//echo $object->characterToAscii('Bc+');
-
-
-?>
+//print DataConversion::stringCaseConversion('hi rasel. how are you?');
