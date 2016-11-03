@@ -122,4 +122,4 @@ class DataConversion {
 
 }
 
-//print DataConversion::stringCaseConversion('hi rasel. how are you?');
+print DataConversion::stringCaseConversion('hi rasel. how are you?');
